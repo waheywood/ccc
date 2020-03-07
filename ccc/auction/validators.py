@@ -1,6 +1,6 @@
 import datetime
 
-def validate_Auction(data):
+def validate_auction(data):
     
     if (valid_description(data["description"]) and 
         valid_date(data["end_time"])):
@@ -15,7 +15,7 @@ def valid_description(description):
 
 def valid_date(date):
     try:
-        datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S.%f")
+        datetime.datetime.strptime(date)
         return True
-    except expression as identifier:
+    except Exception:
         return False
