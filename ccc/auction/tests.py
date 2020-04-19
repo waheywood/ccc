@@ -71,6 +71,18 @@ class UserTest(APITestCase):
             'amount': '10'
         }
         oli = User.objects.get(username='oli')
+        factory = APIRequestFactory()
+        view = BidViewSet.as_view({'post': 'create'})
+        req = factory.post('/api/auction/', data=bid)
+        force_authenticate(req, user=oli, token=get_token(self.oli))
+        res = view(req)
+
+    def test_post_bids(self):
+        bid = {
+            'auction': '1',
+            'amount': '10'
+        }
+        oli = User.objects.get(username='oli')
         mary = User.objects.get(username='mary')
         factory = APIRequestFactory()
         view = BidViewSet.as_view({'post': 'create'})
