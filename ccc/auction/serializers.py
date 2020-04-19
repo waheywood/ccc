@@ -3,6 +3,8 @@ from .models import Auction, Bid
 from datetime import datetime
 from django.utils.timezone import now
 
+#Serializer for auctions objects, confirms the submitted object meets the relevant 
+#criteria for the object. 
 class AuctionSerializer(serializers.ModelSerializer):
 
     def validate_description(self, description):
@@ -10,13 +12,8 @@ class AuctionSerializer(serializers.ModelSerializer):
             return False
         return True
 
-    # def validate_date(self, date):
-    #     try:
-    #         datetime.datetime.strptime(date)
-    #         return True
-    #     except Exception:
-    #         return False
-
+    #Adds a new bid to the auction if it is higher than the current bid and if the 
+    # bidder is not the auction owner. 
     def bid_update(self, instance, bid):
         if bid.user == instance.owner:
             return False, "You cannot bid on your own auctions"
@@ -42,7 +39,7 @@ class AuctionSerializer(serializers.ModelSerializer):
         extra_kwargs={'highest_bid': {'required': False}}
         
 
-
+#Bid serializer, makes sure that the bid is valid. 
 class BidSerializer(serializers.ModelSerializer):
 
     class Meta:

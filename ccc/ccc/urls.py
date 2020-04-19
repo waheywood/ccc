@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from auction.views import AuctionViewSet, BidViewSet
 
+#Router for the auction and bid views. 
 router = DefaultRouter()
 router.register('auction', AuctionViewSet)
 router.register('bid', BidViewSet)
@@ -27,5 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('auth/', include('auth_app.urls')),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls)), 
 ]
