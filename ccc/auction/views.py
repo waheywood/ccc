@@ -8,6 +8,7 @@ from .models import Auction, Bid
 from .serializers import AuctionSerializer, BidSerializer
 # Create your views here.
 
+#Viewset for the auction object. Allows for creation of new auction objects.
 class AuctionViewSet(viewsets.ModelViewSet):
 
     queryset = Auction.objects.all()
@@ -24,7 +25,7 @@ class AuctionViewSet(viewsets.ModelViewSet):
 
         
 
-
+#Viewset for the bid object. Allows for creation of a new bid on an auction object. 
 class BidViewSet(viewsets.ModelViewSet):
 
     queryset = Bid.objects.all()

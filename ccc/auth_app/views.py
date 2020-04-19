@@ -6,7 +6,7 @@ from rest_framework.permissions import AllowAny
 
 import requests
 
-from .serializers import CreateUserSerializer
+from .serializers import UserSerializer
 
 
 CLIENT_ID = 'YxFwIXmjNIbGzN9z3HqABQIVK7wNQxAvxXUPAwQo'
@@ -16,7 +16,7 @@ CLIENT_SECRET = '4eWJ6XbnXlr0pJCYnwTWKtNc6nWLY1J4dJvVQzFgCvjCnMv4Hjgd7JVQJexLR8I
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):
-    serial = CreateUserSerializer(data=request.data)
+    serial = UserSerializer(data=request.data)
     if serial.is_valid():
         serial.save()
 
@@ -73,5 +73,3 @@ def revoke_token(request):
         return Response({'message': 'token revoked'}, req.status_code)
 
     return Response(req.json(), req.status_code)
-
-
